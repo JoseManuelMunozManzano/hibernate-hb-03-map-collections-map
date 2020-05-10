@@ -1,10 +1,16 @@
 package com.neimerc.hibernate.demo.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +30,13 @@ public class Student {
 	@Column(name = "email")
 	private String email; 
 	
+	@ElementCollection
+	@CollectionTable(name = "image")
+	@MapKeyColumn(name = "file_name")
+	@Column(name = "image_name")
+	private Map<String, String> images = new HashMap<>();
+	
 	public Student(String firstName, String lastName, String email) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -61,6 +72,14 @@ public class Student {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Map<String, String> getImages() {
+		return images;
+	}
+
+	public void setImages(Map<String, String> images) {
+		this.images = images;
 	}
 
 	@Override
