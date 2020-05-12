@@ -1,6 +1,5 @@
 package com.neimerc.hibernate.demo;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.hibernate.Session;
